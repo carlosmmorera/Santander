@@ -1,0 +1,6 @@
+﻿  main.cpp
+c:\santander\comprobaciontransacciones\comprobaciontransacciones\main.cpp(19): warning C4018: '<': no coinciden signed/unsigned
+c:\santander\comprobaciontransacciones\comprobaciontransacciones\main.cpp(35): warning C4018: '<': no coinciden signed/unsigned
+c:\santander\comprobaciontransacciones\comprobaciontransacciones\main.cpp(60): warning C4018: '<': no coinciden signed/unsigned
+c:\santander\comprobaciontransacciones\comprobaciontransacciones\main.cpp(67): warning C4018: '<': no coinciden signed/unsigned
+  ComprobacionTransacciones.vcxproj -> C:\Santander\ComprobacionTransacciones\Debug\ComprobacionTransacciones.exe
