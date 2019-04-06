@@ -8,7 +8,8 @@
 using namespace std;
 
 const unsigned int NUMCAMPOS = 5;
-const unsigned long int NUMLINEAS = 600000;
+const unsigned long int NUMUSERS = 50000;
+const long double MEDIA_GASTO = 5828.99;
 
 //Divide los elementos de la línea l separados por ';' y los introduce en un vector
 void splitPuntoYComa(const string &l, vector<string> &v) {
@@ -39,13 +40,19 @@ int main() {
 		string linea = "";
 		string user;
 		vector<string> v;
+		vector<vector<long double>> gastos(
+		long double gasto;
 
 		getline(arch, linea);
 		salida << linea << '\n';
 
-		for (int i = 0; i < NUMLINEAS; ++i) {
+		for (int i = 0; i < NUMUSERS; ++i) {
+			for (int j = 0; j < 12; ++j){
+				getline(arch, linea);
+			}
 			getline(arch, linea);
 			splitPuntoYComa(linea, v);
+			user = v[0];
 
 			salida << v[0] << ';' << v[1] << ';';
 			for (int j = 2; j < NUMCAMPOS; ++j) {
