@@ -7,9 +7,8 @@
 
 using namespace std;
 
-const unsigned int NUMCAMPOS = 5;
 const unsigned long int NUMUSERS = 50000;
-const long double MEDIA_GASTO = 5828.99;
+const long double MEDIA_GASTO = 28561.8;
 
 //Divide los elementos de la línea l separados por ';' y los introduce en un vector
 void splitPuntoYComa(const string &l, vector<string> &v) {
@@ -26,8 +25,8 @@ void splitPuntoYComa(const string &l, vector<string> &v) {
 }
 
 //Falta por hacer
-double predictora(const double &r) {
-	return r;
+double predictora(const double &factor, const double &x) {
+	return factor * (1 + ((-1 / (x + (1 / 5.28))) + 5.28) / 100);
 }
 
 int main() {
@@ -38,35 +37,38 @@ int main() {
 
 	if (arch.is_open() && salida.is_open()) {
 		string linea = "";
-		string user;
 		vector<string> v;
-		vector<vector<long double>> gastos(
-		long double gasto;
+		vector<vector<long double>> gastos(12, vector<long double>(3));
+		long double gasto = 0;
 
 		getline(arch, linea);
 		salida << linea << '\n';
 
 		for (int i = 0; i < NUMUSERS; ++i) {
+			gasto = 0;
 			for (int j = 0; j < 12; ++j){
 				getline(arch, linea);
+				v.clear();
+				splitPuntoYComa(linea, v);
+				for (int k = 0; k < 3; ++k){
+					gastos[j][k] = stold(v[2 + k]);
+					gasto += gastos[j][k];
+				}
 			}
-			getline(arch, linea);
-			splitPuntoYComa(linea, v);
-			user = v[0];
+			gasto = gasto / MEDIA_GASTO;
 
-			salida << v[0] << ';' << v[1] << ';';
-			for (int j = 2; j < NUMCAMPOS; ++j) {
-				double r = stod(v[j]);
-				salida << predictora(r);
-				if (j != NUMCAMPOS - 1)
-					salida << ';';
-				else
-					salida << '\n';
+			for (int j = 0; j < 12; ++j) {
+				salida << v[0] << ';' << j + 1 << ';';
+				for (int k = 0; k < 3; ++k) {
+					salida << predictora(gastos[j][k], gasto);
+					if (k != 2)
+						salida << ';';
+					else
+						salida << '\n';
+				}
 			}
-
-			cout << "Linea " << i + 1 << " procesada.\n";
+			cout << "Usuario " << i + 1 << " procesado.\n";
 		}
-		salida << "Se han procesado " << NUMLINEAS << " lineas.";
 		arch.close();
 		salida.close();
 	}

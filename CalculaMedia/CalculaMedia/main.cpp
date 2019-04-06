@@ -30,15 +30,15 @@ int main() {
 
 	if (arch.is_open()) {
 		string linea = "";
-		string user;
 		vector<string> v;
 		long double sum = 0;
 
 		for (int i = 0; i < NUMLINEAS; ++i) {
 			getline(arch, linea);
+			v.clear();
 			splitPuntoYComa(linea, v);
 
-			sum += stold(v[2]) + stold(v[3]) + stold(v[4]);
+			sum += (stod(v[2]) + stod(v[3]) + stod(v[4]));
 
 			cout << "Linea " << i + 1 << " procesada.\n";
 		}

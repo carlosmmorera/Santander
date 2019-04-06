@@ -1,0 +1,3 @@
+﻿  main.cpp
+c:\santander\maptransacciones\maptransacciones\main.cpp(18): warning C4018: '<': no coinciden signed/unsigned
+  MapTransacciones.vcxproj -> C:\Santander\MapTransacciones\Debug\MapTransacciones.exe
