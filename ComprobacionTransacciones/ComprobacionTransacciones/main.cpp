@@ -114,7 +114,7 @@ int main() {
 				error = !compruebaGastos(v);
 				if (error) {
 					++numErrores;
-					salida << numErrores << ".- Expense error in line: " << i + 1 << '\n';
+					salida << numErrores << ".- Expense error in line: " << i + 1 << " with user " << v[0] << '\n';
 				}
 				v.clear();
 			}
